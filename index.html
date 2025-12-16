@@ -1388,6 +1388,46 @@
             min-width: 120px;
         }
 
+        /* 数据刷新按钮样式 */
+        .data-refresh-panel {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f4ff;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .refresh-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .refresh-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .refresh-btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .last-update-time {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 8px;
+        }
+
         @media (max-width: 768px) {
             .main-content {
                 flex-direction: column;
@@ -1438,6 +1478,16 @@
                     <button class="search-btn" id="search-btn">
                         <i class="fas fa-search"></i>
                     </button>
+                </div>
+
+                <!-- 数据刷新面板 -->
+                <div class="data-refresh-panel">
+                    <button id="refresh-data-btn" class="refresh-btn">
+                        <i class="fas fa-sync-alt"></i> 刷新数据
+                    </button>
+                    <p class="last-update-time">
+                        最后更新: <span id="last-update-time">正在加载...</span>
+                    </p>
                 </div>
 
                 <div class="fuzzy-results" id="fuzzy-results" style="display: none;">
@@ -1612,40 +1662,12 @@
 
     <script>
         // ==================== 核心数据与配置 ====================
-        let dictionaryData = JSON.parse(localStorage.getItem('chaozhouDictionary')) || [
-            {
-                word: "孰及",
-                pronunciation: "su1 gah4",
-                source: "战国·荀子《天论》",
-                originalText: "大天而思之，孰与物畜而制之！",
-                grammar: "表示比较选择，意为「何如」。不如...",
-                audioLink: "https://www.ximalaya.com/search/孰及",
-                imageLink: "",
-                examples: [
-                    { text: "我孰及食水果", pronunciation: "ua2 su1 gah4 ziah8 sui2 guo2", translation: "我不如吃水果" },
-                    { text: "我孰及毋！", pronunciation: "ua2 su1 gah4 m6!", translation: "我宁可不要！" },
-                    { text: "我孰及勿！", pronunciation: "ua2 su1 gah4 mai3!", translation: "我不如不要！" }
-                ],
-                summary: "孰及=孰与，表示比较选择。①「何如」，不如... ②与...相比更喜欢...，通常翻译为「喜欢」",
-                idiom: { text: "睛盲挈手电，道人孰及", pronunciation: "cên1 mên5 kiêh4 ciu2 diêng6，do6 nang5 su1 gah4", translation: "盲人拎手电筒，比起他的做法而言，他喜欢这样干就行（萝卜白菜各有所爱）" },
-                notes: "日语すき（suki）、马来语 suka 都表示喜欢含义。",
-                relatedLanguages: [
-                    { language: "日语", text: "君のことが好きです。", pronunciation: "kimi no koto ga suki desu.", translation: "我喜欢你" },
-                    { language: "马来语", text: "Saya suka awak.", translation: "我喜欢你" },
-                    { language: "普通话", text: "我喜欢你" },
-                    { language: "潮州话", text: "我悦着尔" }
-                ],
-                lastModified: "2023-10-01",
-                submittedBy: "系统管理员"
-            }
-        ];
-        
-        let pendingWords = JSON.parse(localStorage.getItem('chaozhouPendingWords')) || [];
-        let recycleBin = JSON.parse(localStorage.getItem('chaozhouRecycleBin')) || [];
-        let comments = JSON.parse(localStorage.getItem('chaozhouComments')) || [];
-        
+        let dictionaryData = [];
+        let pendingWords = [];
+        let recycleBin = [];
+        let comments = [];
+        let recentSearches = ["孰及"];
         const ADMIN_PASSWORD = "2025";
-        let recentSearches = JSON.parse(localStorage.getItem('chaozhouRecentSearches')) || ["孰及"];
         let currentEditIndex = -1;
         let currentEditMode = 'user_submit';
         let currentEditOriginalWord = '';
@@ -1678,6 +1700,8 @@
         const submitBtn = document.getElementById('submit-btn');
         const cancelBtn = document.getElementById('cancel-btn');
         const deleteWordBtn = document.getElementById('delete-word-btn');
+        const refreshDataBtn = document.getElementById('refresh-data-btn');
+        const lastUpdateTimeElement = document.getElementById('last-update-time');
         
         // 徽章元素
         const reviewBadge = document.getElementById('review-badge');
@@ -1704,29 +1728,142 @@
         const commentSearchExecuteBtn = document.getElementById('comment-search-execute-btn');
         const commentSearchClearBtn = document.getElementById('comment-search-clear-btn');
 
-        // ==================== 数据保存函数 ====================
-        function saveDictionaryData() {
-            localStorage.setItem('chaozhouDictionary', JSON.stringify(dictionaryData));
+        // ==================== 数据加载函数 ====================
+        async function loadDataFromJson() {
+            try {
+                console.log("正在从 data.json 加载数据...");
+                // 添加时间戳防止缓存
+                const response = await fetch('data.json?v=' + new Date().getTime());
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP错误! 状态: ${response.status}`);
+                }
+                
+                const jsonData = await response.json();
+                console.log("成功加载 data.json 数据:", jsonData);
+                
+                // 解析数据
+                dictionaryData = jsonData.dictionaryData || jsonData || [];
+                pendingWords = jsonData.pendingWords || [];
+                recycleBin = jsonData.recycleBin || [];
+                comments = jsonData.comments || [];
+                recentSearches = jsonData.recentSearches || ["孰及"];
+                
+                // 验证数据完整性
+                if (!Array.isArray(dictionaryData)) {
+                    console.warn("dictionaryData 不是数组，尝试转换...");
+                    dictionaryData = Object.values(dictionaryData);
+                }
+                
+                // 更新最后更新时间显示
+                updateLastUpdateTime();
+                
+                return true;
+                
+            } catch (error) {
+                console.error("加载 data.json 失败:", error);
+                showError("无法加载 data.json 文件，请确保文件存在且格式正确");
+                return false;
+            }
         }
 
-        function savePendingWords() {
-            localStorage.setItem('chaozhouPendingWords', JSON.stringify(pendingWords));
+        // 更新最后更新时间显示
+        function updateLastUpdateTime() {
+            if (lastUpdateTimeElement && dictionaryData.length > 0) {
+                // 找到最新的修改时间
+                let latestDate = '';
+                dictionaryData.forEach(item => {
+                    if (item.lastModified && (!latestDate || item.lastModified > latestDate)) {
+                        latestDate = item.lastModified;
+                    }
+                });
+                
+                pendingWords.forEach(item => {
+                    if (item.lastModified && (!latestDate || item.lastModified > latestDate)) {
+                        latestDate = item.lastModified;
+                    }
+                });
+                
+                if (latestDate) {
+                    lastUpdateTimeElement.textContent = latestDate;
+                    lastUpdateTimeElement.style.color = '#27ae60';
+                } else {
+                    lastUpdateTimeElement.textContent = '未知';
+                    lastUpdateTimeElement.style.color = '#666';
+                }
+            }
         }
 
-        function saveRecycleBin() {
-            localStorage.setItem('chaozhouRecycleBin', JSON.stringify(recycleBin));
+        // 显示错误提示
+        function showError(message) {
+            if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+                setTimeout(() => {
+                    const errorMsg = document.createElement('div');
+                    errorMsg.style.cssText = 'position:fixed; top:20px; right:20px; background:#e74c3c; color:white; padding:15px; border-radius:8px; z-index:9999; max-width:300px; box-shadow:0 4px 12px rgba(0,0,0,0.2);';
+                    errorMsg.innerHTML = `
+                        <strong><i class="fas fa-exclamation-triangle"></i> 数据加载失败</strong>
+                        <p style="margin:8px 0; font-size:14px;">${message}</p>
+                        <button onclick="this.parentElement.remove()" style="background:white; color:#e74c3c; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">关闭</button>
+                    `;
+                    document.body.appendChild(errorMsg);
+                }, 1000);
+            }
         }
 
-        function saveComments() {
-            localStorage.setItem('chaozhouComments', JSON.stringify(comments));
-        }
-
-        function saveRecentSearches() {
-            localStorage.setItem('chaozhouRecentSearches', JSON.stringify(recentSearches));
+        // 重新加载数据
+        async function reloadData() {
+            refreshDataBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 刷新中...';
+            refreshDataBtn.disabled = true;
+            
+            const success = await loadDataFromJson();
+            
+            if (success) {
+                // 刷新页面显示
+                displayRecentSearches();
+                if (dictionaryData.length > 0) {
+                    displayWord(dictionaryData[0]);
+                } else {
+                    displayNoResults(true);
+                }
+                
+                // 刷新轮播和留言
+                loadMySubmissionsCarousel();
+                loadComments();
+                
+                // 更新徽章
+                updateAllBadges();
+                
+                refreshDataBtn.innerHTML = '<i class="fas fa-check"></i> 刷新成功';
+                setTimeout(() => {
+                    refreshDataBtn.innerHTML = '<i class="fas fa-sync-alt"></i> 刷新数据';
+                    refreshDataBtn.disabled = false;
+                }, 1500);
+                
+                return true;
+            } else {
+                refreshDataBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> 刷新失败';
+                setTimeout(() => {
+                    refreshDataBtn.innerHTML = '<i class="fas fa-sync-alt"></i> 刷新数据';
+                    refreshDataBtn.disabled = false;
+                }, 3000);
+                return false;
+            }
         }
 
         // ==================== 页面初始化 ====================
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', async function () {
+            // 显示加载状态
+            resultsContainer.innerHTML = `
+                <div class="no-results">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 3rem; margin-bottom: 20px; color: #2c5aa0;"></i>
+                    <h3>正在加载数据...</h3>
+                    <p>正在从 data.json 文件读取最新数据</p>
+                </div>`;
+            
+            // 加载数据
+            await loadDataFromJson();
+            
+            // 初始化页面
             displayRecentSearches();
             if (dictionaryData.length > 0) {
                 displayWord(dictionaryData[0]);
@@ -1772,6 +1909,9 @@
             searchBtn.addEventListener('click', () => performSearch(searchInput.value));
             searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') performSearch(searchInput.value); });
             searchInput.addEventListener('input', handleSearchInput);
+            
+            // 数据刷新按钮
+            refreshDataBtn.addEventListener('click', reloadData);
             
             // 数据管理按钮 - 需要管理员密码
             dataManageBtn.addEventListener('click', () => {
@@ -1875,7 +2015,6 @@
                 if (!recentSearches.includes(matchedWord.word)) {
                     recentSearches.unshift(matchedWord.word);
                     if (recentSearches.length > 5) recentSearches.pop();
-                    saveRecentSearches();
                     displayRecentSearches();
                 }
                 displayWord(matchedWord);
@@ -2268,13 +2407,11 @@
                 wordData.reviewNote = '用户修正版本，等待审核';
                 wordData.correctionOf = originalWord.word;
                 pendingWords.push(wordData);
-                savePendingWords();
                 
                 alert(`词条"${originalWord.word}"的修正版本"${word}"已提交，等待审核。原词条在审核通过前保持不变。`);
                 
             } else if (currentEditMode === 'admin_review' && currentEditIndex >= 0 && currentEditIndex < pendingWords.length) {
                 pendingWords[currentEditIndex] = wordData;
-                savePendingWords();
                 alert(`待审核词条"${word}"已更新。`);
                 
                 if (document.getElementById('review-panel').style.display === 'block') {
@@ -2285,7 +2422,6 @@
             } else {
                 wordData.status = 'pending_review';
                 pendingWords.push(wordData);
-                savePendingWords();
                 alert(`词条"${word}"已提交，请等待管理员审核发布！`);
             }
 
@@ -2307,17 +2443,14 @@
                 const wordToDelete = dictionaryData[currentEditIndex];
                 if (confirm(`确定将词条"${wordToDelete.word}"移入回收站吗？\n\n移入后可以恢复或申诉。`)) {
                     dictionaryData.splice(currentEditIndex, 1);
-                    saveDictionaryData();
                     
                     wordToDelete.deletedTime = new Date().toLocaleString();
                     wordToDelete.deletedBy = '管理员';
                     wordToDelete.status = 'deleted';
                     
                     pendingWords = pendingWords.filter(item => item.word !== wordToDelete.word);
-                    savePendingWords();
                     
                     recycleBin.push(wordToDelete);
-                    saveRecycleBin();
                     
                     alert(`词条"${wordToDelete.word}"已移入回收站，相关待审条目已清理。`);
                     cancelEdit();
@@ -2517,10 +2650,8 @@
             
             if (item.type === 'pending' && item.originalIndex !== undefined) {
                 pendingWords.splice(item.originalIndex, 1);
-                savePendingWords();
             } else if (item.type === 'rejected' && item.recycleIndex !== undefined) {
                 recycleBin.splice(item.recycleIndex, 1);
-                saveRecycleBin();
             }
             
             alert(`投稿"${item.word}"已删除。`);
@@ -2554,10 +2685,8 @@
             };
             
             pendingWords.push(wordData);
-            savePendingWords();
             
             recycleBin.splice(recycleIndex, 1);
-            saveRecycleBin();
             
             alert(`词条"${rejectedWord.word}"已重新提交到待审核列表。`);
             updateAllBadges();
@@ -2640,7 +2769,6 @@
             };
             
             comments.unshift(newComment);
-            saveComments();
             
             commentAuthorInput.value = '';
             commentContentInput.value = '';
@@ -2694,7 +2822,6 @@
                 alert('留言已取消置顶！');
             }
             
-            saveComments();
             loadComments();
         }
 
@@ -2710,7 +2837,6 @@
             }
             
             const deletedComment = comments.splice(index, 1)[0];
-            saveComments();
             loadComments();
             
             alert(`留言"${deletedComment.content.substring(0, 20)}..."已删除。`);
@@ -2753,8 +2879,6 @@
             // 修复：只保留测试词条"厝"，删除其他所有词条
             recycleBin = recycleBin.filter(item => item.word === "厝" && item.pronunciation === "cu3");
             
-            saveRecycleBin();
-            
             const removedCount = originalRecycleBinLength - recycleBin.length;
             
             if (removedCount > 0) {
@@ -2773,7 +2897,6 @@
             recycleBin = recycleBin.filter(item => !(item.word === "厝" && item.pronunciation === "cu3"));
             
             if (recycleBin.length < originalLength) {
-                saveRecycleBin();
                 alert('测试词条"厝"已从回收站中移除。');
                 loadRecycleBin();
                 updateAllBadges();
@@ -3025,8 +3148,7 @@
                 }
             }
             
-            // 保存并反馈结果
-            savePendingWords();
+            // 更新徽章
             updateAllBadges();
             
             alert(`导入完成！\n成功导入: ${importedCount} 个词条\n跳过重复或无效: ${skippedCount} 个词条\n\n导入的词条已添加到待审核列表，请管理员审核后发布。`);
@@ -3153,8 +3275,6 @@
                     skippedCount++;
                 }
             });
-            
-            saveComments();
             
             alert(`留言导入完成！\n成功导入: ${importedCount} 条留言\n跳过重复: ${skippedCount} 条留言`);
             
@@ -3297,7 +3417,6 @@
             if (!confirm(`确定要删除待审核词条"${wordToDelete.word}"吗？此操作无法撤销！`)) return;
             
             pendingWords.splice(index, 1);
-            savePendingWords();
             
             alert(`待审核词条"${wordToDelete.word}"已删除。`);
             loadReviewPanel();
@@ -3343,7 +3462,6 @@
                     originalWord.replacedBy = wordText;
                     originalWord.replacedByWord = wordToApprove;
                     recycleBin.push(originalWord);
-                    saveRecycleBin();
                     
                     // 从正式库移除原词条
                     dictionaryData.splice(originalIndex, 1);
@@ -3356,11 +3474,9 @@
                 
                 wordToApprove.lastModified = new Date().toISOString().split('T')[0];
                 dictionaryData.push(wordToApprove);
-                saveDictionaryData();
                 
                 // 从待审核列表移除
                 pendingWords.splice(index, 1);
-                savePendingWords();
                 
                 alert(`已批准发布修正词条"${wordText}"，原词条已移入回收站。`);
                 
@@ -3375,10 +3491,8 @@
                 
                 wordToApprove.lastModified = new Date().toISOString().split('T')[0];
                 dictionaryData.push(wordToApprove);
-                saveDictionaryData();
                 
                 pendingWords.splice(index, 1);
-                savePendingWords();
                 
                 alert(`已批准发布词条"${wordText}"。`);
             }
@@ -3399,9 +3513,6 @@
                     recycleBin.push(removedWord);
                 }
             });
-            
-            savePendingWords();
-            saveRecycleBin();
             
             loadReviewPanel();
             updateAllBadges();
@@ -3425,14 +3536,12 @@
             }
             
             pendingWords.splice(index, 1);
-            savePendingWords();
             
             wordToReject.status = 'rejected';
             wordToReject.rejectTime = new Date().toLocaleString();
             wordToReject.rejectedBy = '管理员';
             wordToReject.rejectReason = rejectReason.trim();
             recycleBin.push(wordToReject);
-            saveRecycleBin();
             
             alert(`已拒绝词条"${wordToReject.word}"，并移入回收站。`);
             loadReviewPanel();
@@ -3468,10 +3577,8 @@
             }
             
             recycleBin.splice(index, 1);
-            saveRecycleBin();
             
             pendingWords = pendingWords.filter(item => item.word !== wordToRestore.word);
-            savePendingWords();
             
             delete wordToRestore.status;
             delete wordToRestore.deletedTime;
@@ -3483,7 +3590,6 @@
             wordToRestore.lastModified = new Date().toISOString().split('T')[0];
             
             dictionaryData.push(wordToRestore);
-            saveDictionaryData();
             
             alert(`已恢复词条"${wordToRestore.word}"。`);
             loadRecycleBin();
@@ -3502,13 +3608,9 @@
             const wordToDelete = recycleBin[index].word;
             
             recycleBin.splice(index, 1);
-            saveRecycleBin();
             
             const pendingBefore = pendingWords.length;
             pendingWords = pendingWords.filter(item => item.word !== wordToDelete);
-            if (pendingWords.length < pendingBefore) {
-                savePendingWords();
-            }
             
             alert(`词条"${wordToDelete}"已永久删除，相关待审条目已清理。`);
             loadRecycleBin();
@@ -3528,7 +3630,6 @@
             wordToAppeal.appealTime = new Date().toLocaleString();
             wordToAppeal.appealReason = appealReason.trim();
             
-            saveRecycleBin();
             alert('申诉已提交，等待管理员审核。');
             loadRecycleBin();
             updateAllBadges();
@@ -3545,7 +3646,6 @@
             }
             
             recycleBin.splice(index, 1);
-            saveRecycleBin();
             
             delete wordToApprove.status;
             delete wordToApprove.appealTime;
@@ -3553,7 +3653,6 @@
             wordToApprove.status = 'pending_review';
             wordToApprove.reviewNote = '通过申诉重新提交，等待审核';
             pendingWords.push(wordToApprove);
-            savePendingWords();
             
             alert(`已批准申诉，词条"${wordToApprove.word}"已重新进入待审核列表。`);
             loadRecycleBin();
@@ -3572,7 +3671,6 @@
             wordToReject.appealRejectTime = new Date().toLocaleString();
             wordToReject.appealRejectReason = rejectReason.trim();
             
-            saveRecycleBin();
             alert('申诉已驳回。');
             loadRecycleBin();
             updateAllBadges();
@@ -3601,6 +3699,7 @@
         window.removeTestWordFromRecycleBin = removeTestWordFromRecycleBin;
         window.clearAllRecycleBin = clearAllRecycleBin;
         window.importExcelData = importExcelData;
+        window.reloadData = reloadData;
     </script>
 </body>
 </html>
