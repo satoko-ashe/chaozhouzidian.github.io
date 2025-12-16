@@ -237,6 +237,37 @@
       "status": "pending_review"
     }
   ],
+  "comments": [
+    {
+      "author": "satoko",
+      "content": "这是我的小号",
+      "time": "2025/12/16 21:16:06",
+      "isAdmin": false,
+      "isPinned": false
+    },
+    {
+      "author": "B站可搜金瓯阿舍",
+      "content": "大家好，我是小编",
+      "time": "2025/12/15 22:04:37",
+      "isAdmin": false,
+      "isPinned": true,
+      "pinnedTime": "2025/12/15 23:32:09"
+    },
+    {
+      "author": "匿名用户",
+      "content": "你好厉害",
+      "time": "2025/12/17 2:50:03",
+      "isAdmin": false,
+      "isPinned": false
+    },
+    {
+      "author": "匿名用户",
+      "content": "我来了",
+      "time": "2025/12/16 18:35:55",
+      "isAdmin": false,
+      "isPinned": false
+    }
+  ],
   "recycleBin": [
     {
       "word": "乘虬",
@@ -270,23 +301,6 @@
       "rejectReason": "不对"
     }
   ],
-  "comments": [
-    {
-      "author": "satoko",
-      "content": "这是我的小号",
-      "time": "2025/12/16 21:16:06",
-      "isAdmin": false,
-      "isPinned": false
-    },
-    {
-      "author": "B站可搜金瓯阿舍",
-      "content": "大家好，我是小编",
-      "time": "2025/12/15 22:04:37",
-      "isAdmin": false,
-      "isPinned": true,
-      "pinnedTime": "2025/12/15 23:32:09"
-    }
-  ],
   "recentSearches": [
     "猎",
     "耄",
@@ -294,6 +308,6 @@
     "食茶",
     "厝"
   ],
-  "exportDate": "2025-12-16T16:13:51.487Z",
-  "version": "5.0"
+  "lastMerge": "2025/12/17 04:12:19",
+  "mergeFrom": "未知时间"
 }
