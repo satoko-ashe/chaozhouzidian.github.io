@@ -1,12 +1,51 @@
 {
   "dictionaryData": [
     {
+      "word": "厝",
+      "pronunciation": "cu3",
+      "source": "《易·系辞下》",
+      "originalText": "占右穴居而野处。",
+      "grammar": "动词。指居住，生活。处，本义是停止。表示停驻，逗留。",
+      "audioLink": "http://www.czyzd.com/search?keyword=%e5%8e%9d",
+      "imageLink": "https://x0.ifengimg.com/res/2020/B0BF11B23031B3FFE8AAF71C2E7B9DECED760C09_size73_w640_h436.jpeg",
+      "examples": [
+        {
+          "text": "转老厝",
+          "pronunciation": "deng2 lao6 cu3",
+          "translation": "回老家；回娘家。但回家要说“转内”deng2 lai6 【转：在句中2调变6调】<br /> 内人 lai6 nang5，旧时指妻子，即家里人。但更多说“愚老”na2 lao6，我老伴。<br /> 厝=房子 house，内=家 home <br />老厝 lao6 cu3=老家；老房子。【反义】新厝 sing1 cu3，新家；新房子"
+        },
+        {
+          "text": "厝边头尾",
+          "pronunciation": "cu3 bin1 tao5 bhuê2",
+          "translation": "左邻右舍；街坊邻里"
+        }
+      ],
+      "summary": "作名词是住处，闽南地区跟潮汕地区都写成“厝”，正字是“处”，指「房子、家、住所」。<br />\n厝舍[cuò shè]:本指停放棺柩的小房。由于“厝”的普及性过广，故沿用该字作为专有名词使用。",
+      "idiom": {
+        "text": "潮州厝，皇宫起",
+        "pronunciation": "diê5 ziu1 cu3 ，uang5/ng5 gêng1 ki2",
+        "translation": "潮汕民居媲美皇宫(按照皇宫的标准来建的，起厝 ki2 cu3=建房子）<br /><br />潮州（潮州府）＞潮汕地区＞潮州市：先秦是海阳方国，主要人口是畲族。秦军下岭南驻扎在揭岭，南越国时期设立“海阳县”，汉武帝“荒置南越国设立的海阳县”，设揭阳县。晋朝叫“义安郡”，隋朝第一次称“潮州”，明清称“潮州府”，管辖今潮汕三地，还囊括了今梅州丰顺县，大埔县，甚至是福建漳州的5个县，还有今汕尾陆丰陆河的一小片地区。建国后才设立潮汕专区，分设三市。"
+      },
+      "notes": "唐·王维〈田家〉诗：“住处名愚谷，何烦问是非？”<br />\n《儿女英雄传 · 第三八回》：“一日走不了半站，但有个住处，便随遇而安。”",
+      "relatedLanguages": [
+        {
+          "language": "粤语",
+          "text": "屋寄/屋企",
+          "pronunciation": "uk1 kei5",
+          "translation": "屋子；住房"
+        }
+      ],
+      "submittedBy": "管理员",
+      "lastModified": "2025-12-17",
+      "submitTime": "2025/12/17 17:17:47"
+    },
+    {
       "word": "猎",
       "pronunciation": "lah8/lab4",
       "source": "《诗·魏风·伐檀》",
       "originalText": "不狩不猎，胡瞻尔庭有县貆兮?",
       "grammar": "猎，本义是狩猎，捕获。",
-      "audioLink": "https://www.ximalaya.com/search/%E7%8C%8E",
+      "audioLink": "http://www.czyzd.com/search?keyword=%e7%8c%8e",
       "imageLink": "https://bpic.588ku.com/back_origin_min_pic/22/12/07/282a0a4838effe073ff9d91e659da62c.jpg!/fw/750/quality/99/unsharp/true/compress/true",
       "examples": [
         {
@@ -34,8 +73,40 @@
       "notes": "【原文】<br />\n街市猎无：鸡子错脚踏死鹅，和尚相搏掌头毛，尼姑教子猎佚逃，耄鼠教猫摗竹篙，睛盲看着笑呵呵，毋知尔感觉如何？<br /><br />\n【译文】<br />\n全社会也找不到这种情况：小鸡不小心踩死大肥鹅，和尚打架时互扯头发，尼姑带着孩子外出游玩，老鼠教猫爬竹杆（教会猫怎么在竹篙上晃荡前行），盲人看到这种情况笑呵呵，不知你看到这些情况有什么感觉。<br /><br />\n【注解】<br />\n相搏 siê1 pah4，互相搏斗，互殴，打架<br />\n掌 zang2：握住，拽住，抓住。掌头毛 zang2 tao5 mo5：拽头发。<br />\n教子 gieu1 gian2：带孩子，带娃。<br />\n猎佚逃 lah8 tig8 to5，四处闲逛。佚逃=佚游：玩耍。<br />\n耄 ngiau2/ngiauh8，老也。耄鼠 ngiau6 ce2=老鼠。<br />\n教猫 ga3 ngieu1 ，教授猫...<br />\n摗 so6=擞，抖动，摇动。<br />摗乘虬 so6 sêng5 ciu7，荡秋千（乘虬=榕树）<br />\n睛盲 cên1 mên5，盲人，瞎子",
       "relatedLanguages": [],
       "submittedBy": "管理员",
-      "lastModified": "2025-12-15",
-      "submitTime": "2025/12/16 00:27:21"
+      "lastModified": "2025-12-17",
+      "submitTime": "2025/12/17 17:19:06"
+    },
+    {
+      "word": "食茶",
+      "pronunciation": "ziah8 de5",
+      "source": "《全唐文·卷九百十六》（释泠然《宿九华化成寺庄》诗）",
+      "originalText": "食茶若餐松柏子，采蕨若摘芝兰丛。",
+      "grammar": "动词短语，意为「喝茶」。<br />\n也说「滴茶」dih4 dê5（指潮州工夫茶的泡茶手艺：“关公巡城，韩信点兵”)<br />\n或「叩茶」ka3 dê5（旧时谢茶礼要用食指和中指并拢，轻叩桌子三下）",
+      "audioLink": "http://www.czyzd.com/search?keyword=%e9%a3%9f%e8%8c%b6",
+      "imageLink": "",
+      "examples": [
+        {
+          "text": "有闲来食茶",
+          "pronunciation": "u6 oin5 lai5 ziah8 dê5",
+          "translation": "有空过来喝茶"
+        },
+        {
+          "text": "食茶诐话",
+          "pronunciation": "ziah8 dê5 puêh8 uê7",
+          "translation": "边喝茶边聊天<br /> 诐，辩论也。——《说文》"
+        }
+      ],
+      "summary": "一进门就喝茶是潮汕地区重要的待客习俗,坐下就要喝茶，茶杯空了就一直续满，不能停。<br /> \n另外，普通话说喝茶，粤语说饮茶/jam2 caa4/",
+      "idiom": {
+        "text": "茶三酒四佚逃二",
+        "pronunciation": "dê5 san1 ziu2 si3 tig8 to5 no6",
+        "translation": "最理想的状态是喝茶三人，喝酒四人，游玩只需两人即可。<br /> 佚逃 tig8 to5，类似“佚游”含义，到处游玩。"
+      },
+      "notes": "荼/tú/,苦菜。--《尔雅·释草》<br />\n《正字通》引《魏了翁集》曰:茶之始，其字为荼。<br /><br />\n所以茶有两个读音：<br /> \n[白话音]“荼”dê5 →荷兰语thee，发音/dei/→西班牙语Té，发音/te/→英语tea /tiː/；<br />\n[文读音]“茶”ca5→日语chya",
+      "relatedLanguages": [],
+      "submittedBy": "管理员",
+      "lastModified": "2025-12-17",
+      "submitTime": "2025/12/17 17:20:33"
     },
     {
       "word": "耄",
@@ -43,7 +114,7 @@
       "source": "《左传·隐公四年》",
       "originalText": "老夫耄矣，无能为也。<br />\nlao6 da1 ngiauh8 li7，bho5 lêng5 ui5 a7",
       "grammar": "年老，八九十岁的年纪：耄耋（mào dié）之年。<br />\n<br />\n【潮州话】子夫欲耄尔<br />\nzu6 da1 ain3 ngiauh8 li7<br />\n（他好像要死了）<br />\n<br />\n【注】子zu6，也可写“者”，表示那个人，那位。不定指，同“伊”i1，英文it/that。<br />\n潮阳话“孔子”叫kong2 zu6.<br />\n故“子曰”=子诞 zu6 dan3，那人说，有个人说...<br />\n<br />\n老人，不礼貌的说法是“阿老”a1 lao6，或“老咳咳”lao6 ka3 ka3\n<br />\n【潮州话】我无能为也 \n ua2 bho5 lêng5 ui5 a7\n（我没办法了；心有余而力不足）",
-      "audioLink": "https://www.ximalaya.com/search/%E8%80%84",
+      "audioLink": "http://www.czyzd.com/search?keyword=%e7%8c%ab",
       "imageLink": "",
       "examples": [
         {
@@ -76,40 +147,8 @@
       "notes": "",
       "relatedLanguages": [],
       "submittedBy": "管理员",
-      "lastModified": "2025-12-15",
-      "submitTime": "2025/12/16 00:42:28"
-    },
-    {
-      "word": "食茶",
-      "pronunciation": "ziah8 de5",
-      "source": "《全唐文·卷九百十六》（释泠然《宿九华化成寺庄》诗）",
-      "originalText": "食茶若餐松柏子，采蕨若摘芝兰丛。",
-      "grammar": "动词短语，意为「喝茶」。<br />\n也说「滴茶」dih4 dê5（指潮州工夫茶的泡茶手艺：“关公巡城，韩信点兵”)<br />\n或「叩茶」ka3 dê5（旧时谢茶礼要用食指和中指并拢，轻叩桌子三下）",
-      "audioLink": "https://www.ximalaya.com/search/食茶",
-      "imageLink": "",
-      "examples": [
-        {
-          "text": "有闲来食茶",
-          "pronunciation": "u6 oin5 lai5 ziah8 dê5",
-          "translation": "有空过来喝茶"
-        },
-        {
-          "text": "食茶诐话",
-          "pronunciation": "ziah8 dê5 puêh8 uê7",
-          "translation": "边喝茶边聊天<br /> 诐，辩论也。——《说文》"
-        }
-      ],
-      "summary": "一进门就喝茶是潮汕地区重要的待客习俗,坐下就要喝茶，茶杯空了就一直续满，不能停。<br /> \n另外，普通话说喝茶，粤语说饮茶/jam2 caa4/",
-      "idiom": {
-        "text": "茶三酒四佚逃二",
-        "pronunciation": "dê5 san1 ziu2 si3 tig8 to5 no6",
-        "translation": "最理想的状态是喝茶三人，喝酒四人，游玩只需两人即可。<br /> 佚逃 tig8 to5，类似“佚游”含义，到处游玩。"
-      },
-      "notes": "荼/tú/,苦菜。--《尔雅·释草》<br />\n《正字通》引《魏了翁集》曰:茶之始，其字为荼。<br /><br />\n所以茶有两个读音：<br /> \n[白话音]“荼”dê5 →荷兰语thee，发音/dei/→西班牙语Té，发音/te/→英语tea /tiː/；<br />\n[文读音]“茶”ca5→日语chya",
-      "relatedLanguages": [],
-      "submittedBy": "管理员",
-      "lastModified": "2025-12-15",
-      "submitTime": "2025/12/16 00:57:40"
+      "lastModified": "2025-12-17",
+      "submitTime": "2025/12/17 17:22:09"
     },
     {
       "word": "孰及",
@@ -117,7 +156,7 @@
       "source": "战国·荀子《天论》",
       "originalText": "大天而思之，孰与物畜而制之！",
       "grammar": "表示比较选择，意为「何如」。不如...",
-      "audioLink": "https://www.ximalaya.com/search/孰及",
+      "audioLink": "http://www.czyzd.com/search?keyword=%e8%be%93%e4%bd%ae",
       "imageLink": "",
       "examples": [
         {
@@ -170,9 +209,57 @@
         }
       ],
       "submittedBy": "管理员",
+      "lastModified": "2025-12-17",
+      "submitTime": "2025/12/17 17:24:37"
+    }
+  ],
+  "pendingWords": [
+    {
+      "word": "睛盲",
+      "pronunciation": "cên1 mên5",
+      "source": "",
+      "originalText": "盲人，瞎子",
+      "grammar": "",
+      "audioLink": "https://www.ximalaya.com/search/%E7%9D%9B%E7%9B%B2",
+      "imageLink": "",
+      "examples": [],
+      "summary": "",
+      "idiom": {
+        "text": "",
+        "pronunciation": "",
+        "translation": ""
+      },
+      "notes": "",
+      "relatedLanguages": [],
+      "submittedBy": "管理员",
       "lastModified": "2025-12-15",
-      "submitTime": "2025/12/16 01:02:13"
+      "submitTime": "2025/12/16 00:29:45",
+      "status": "pending_review"
     },
+    {
+      "word": "佚逃",
+      "pronunciation": "tig8 to5",
+      "source": "《诗经·郑风·子衿》",
+      "originalText": "挑兮达兮，在城阙兮",
+      "grammar": "走来走去",
+      "audioLink": "https://www.ximalaya.com/search/%E4%BD%9A%E9%80%83",
+      "imageLink": "",
+      "examples": [],
+      "summary": "",
+      "idiom": {
+        "text": "",
+        "pronunciation": "",
+        "translation": ""
+      },
+      "notes": "",
+      "relatedLanguages": [],
+      "submittedBy": "匿名用户",
+      "lastModified": "2025-12-17",
+      "submitTime": "2025/12/17 17:27:31",
+      "status": "pending_review"
+    }
+  ],
+  "recycleBin": [
     {
       "word": "厝",
       "pronunciation": "cu3",
@@ -210,31 +297,50 @@
       ],
       "submittedBy": "管理员",
       "lastModified": "2025-12-15",
-      "submitTime": "2025/12/16 01:09:33"
-    }
-  ],
-  "pendingWords": [
-    {
-      "word": "睛盲",
-      "pronunciation": "cên1 mên5",
-      "source": "",
-      "originalText": "盲人，瞎子",
-      "grammar": "",
-      "audioLink": "https://www.ximalaya.com/search/%E7%9D%9B%E7%9B%B2",
-      "imageLink": "",
-      "examples": [],
-      "summary": "",
-      "idiom": {
-        "text": "",
-        "pronunciation": "",
-        "translation": ""
-      },
-      "notes": "",
-      "relatedLanguages": [],
-      "submittedBy": "管理员",
-      "lastModified": "2025-12-15",
-      "submitTime": "2025/12/16 00:29:45",
-      "status": "pending_review"
+      "submitTime": "2025/12/16 01:09:33",
+      "deletedTime": "2025/12/17 17:18:14",
+      "deletedBy": "管理员",
+      "status": "replaced",
+      "replacedBy": "厝",
+      "replacedByWord": {
+        "word": "厝",
+        "pronunciation": "cu3",
+        "source": "《易·系辞下》",
+        "originalText": "占右穴居而野处。",
+        "grammar": "动词。指居住，生活。处，本义是停止。表示停驻，逗留。",
+        "audioLink": "http://www.czyzd.com/search?keyword=%e5%8e%9d",
+        "imageLink": "https://x0.ifengimg.com/res/2020/B0BF11B23031B3FFE8AAF71C2E7B9DECED760C09_size73_w640_h436.jpeg",
+        "examples": [
+          {
+            "text": "转老厝",
+            "pronunciation": "deng2 lao6 cu3",
+            "translation": "回老家；回娘家。但回家要说“转内”deng2 lai6 【转：在句中2调变6调】<br /> 内人 lai6 nang5，旧时指妻子，即家里人。但更多说“愚老”na2 lao6，我老伴。<br /> 厝=房子 house，内=家 home <br />老厝 lao6 cu3=老家；老房子。【反义】新厝 sing1 cu3，新家；新房子"
+          },
+          {
+            "text": "厝边头尾",
+            "pronunciation": "cu3 bin1 tao5 bhuê2",
+            "translation": "左邻右舍；街坊邻里"
+          }
+        ],
+        "summary": "作名词是住处，闽南地区跟潮汕地区都写成“厝”，正字是“处”，指「房子、家、住所」。<br />\n厝舍[cuò shè]:本指停放棺柩的小房。由于“厝”的普及性过广，故沿用该字作为专有名词使用。",
+        "idiom": {
+          "text": "潮州厝，皇宫起",
+          "pronunciation": "diê5 ziu1 cu3 ，uang5/ng5 gêng1 ki2",
+          "translation": "潮汕民居媲美皇宫(按照皇宫的标准来建的，起厝 ki2 cu3=建房子）<br /><br />潮州（潮州府）＞潮汕地区＞潮州市：先秦是海阳方国，主要人口是畲族。秦军下岭南驻扎在揭岭，南越国时期设立“海阳县”，汉武帝“荒置南越国设立的海阳县”，设揭阳县。晋朝叫“义安郡”，隋朝第一次称“潮州”，明清称“潮州府”，管辖今潮汕三地，还囊括了今梅州丰顺县，大埔县，甚至是福建漳州的5个县，还有今汕尾陆丰陆河的一小片地区。建国后才设立潮汕专区，分设三市。"
+        },
+        "notes": "唐·王维〈田家〉诗：“住处名愚谷，何烦问是非？”<br />\n《儿女英雄传 · 第三八回》：“一日走不了半站，但有个住处，便随遇而安。”",
+        "relatedLanguages": [
+          {
+            "language": "粤语",
+            "text": "屋寄/屋企",
+            "pronunciation": "uk1 kei5",
+            "translation": "屋子；住房"
+          }
+        ],
+        "submittedBy": "管理员",
+        "lastModified": "2025-12-17",
+        "submitTime": "2025/12/17 17:17:47"
+      }
     }
   ],
   "comments": [
@@ -268,39 +374,6 @@
       "isPinned": false
     }
   ],
-  "recycleBin": [
-    {
-      "word": "乘虬",
-      "pronunciation": "sêng5 ciu7",
-      "source": "榕树。又名“神树”或“成树”",
-      "originalText": "",
-      "grammar": "",
-      "audioLink": "https://www.ximalaya.com/search/%E4%B9%98%E8%99%AC",
-      "imageLink": "",
-      "examples": [
-        {
-          "text": "摗乘虬",
-          "pronunciation": "so6 sêng5 ciu7",
-          "translation": "荡秋千（乘虬=榕树）"
-        }
-      ],
-      "summary": "",
-      "idiom": {
-        "text": "",
-        "pronunciation": "",
-        "translation": ""
-      },
-      "notes": "",
-      "relatedLanguages": [],
-      "submittedBy": "匿名用户",
-      "lastModified": "2025-12-15",
-      "submitTime": "2025/12/16 00:31:35",
-      "status": "rejected",
-      "rejectTime": "2025/12/16 18:55:56",
-      "rejectedBy": "管理员",
-      "rejectReason": "不对"
-    }
-  ],
   "recentSearches": [
     "猎",
     "耄",
@@ -308,6 +381,6 @@
     "食茶",
     "厝"
   ],
-  "lastMerge": "2025/12/17 04:12:19",
-  "mergeFrom": "未知时间"
+  "exportDate": "2025-12-17T09:30:37.910Z",
+  "version": "1.0"
 }
